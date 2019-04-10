@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <user-form></user-form>
+            </div>
+        </div>
+    </div>
+    <template id="user-one">
+        <table class="table">
+            <caption>{{title}}</caption>
+            <thead>
+                <tr>
+                  <th scope="col">Имя</th>
+                  <th scope="col">Фамилия</th>
+                  <th scope="col">Улица</th>
+                  <th scope="col">Телефон</th>
+                </tr>
+              </thead>          
+             <tbody>
+                 <tr v-for="item in users" :key="item.id">
+                  
+                     <th>{{item.name}}</th>
+                     <th>{{item.username}}</th>
+                     <!-- <th>{{item.email}}</th> -->
+                     <th>{{item.address.street}}</th>
+                     <th>{{item.phone}}</th>
+                 </tr>
+             </tbody>
+         </table>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      /* почему в примере https://plnkr.co/edit/pgVKotq3BJz8FE3EuLGx?p=preview
+       <script id="users-component"> - такой записи не встречал более + ошибки консоле
+       как все же правильно записывать шаблон компонентна  ?
+      */
+      // целесообразно в таких случаях "const" или оставить "var" ?
+      // взято из примера
+      //ES6
+      const userList = {
+        name: 'userList',
+        template: '#user-one',
+        data(){
+            return {
+                title: 'userList',
+                users: []
+            }
+        },
+        watch: {
+          // immediate: true,
+          // handler: 'mounted',
+          // mounted: 'loadUsers',
+        },
+        mounted() {
+          console.log('mounted - компонент userList')
+          this.loadUsers()
+        },
+        methods: {
+          // loadUsersLog() {
+          //   console.log('loadUsersLog - компонент userList', this.users)
+          // },
+          loadUsers() {
+            console.log('loadUsers - компонент userList')
+            const url = "http://jsonplaceholder.typicode.com/users"
+            const self = this
+            axios.get(url)
+            // .then(response => {
+              // self.users = response.data
+              // если без стрелочной функции
+            .then(function(response) {
+              self.users =  response.data
+          })
+          }
+        }
+      };
+
+      const app = new Vue({
+        el: '#app',
+        components: {      
+          'user-form': userList
+        },
+      });
+
+    </script>
+</body>
+</html>
