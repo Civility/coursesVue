@@ -21,25 +21,16 @@ export default {
     // Список пользователей
     users: []
   }),
-
-  methods: {
-    loadData() {
-      //   axios.get('http://localhost:3000/users').then(({ data }) => {
-      //     this.users = data.users
-      //     .catch(error => console.log(error))
-      axios.get('http://localhost:3000/users').then(
-        response => {
-          this.articles = response.data
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    }
-  },
   mounted() {
     // отжидание ответа с бд
     this.loadData()
+  },
+  methods: {
+    loadData() {
+      axios.get('http://localhost:3000/users').then(({ data }) => {
+        this.users = data.users.catch(error => console.log(error))
+      })
+    }
   }
 }
 </script>
