@@ -2,7 +2,7 @@
   <div>
     <h2>Список пользователей</h2>
 
-    <div v-if="!users.length" class="alert alert-warning">
+    <div v-if="!lengthUsers" class="alert alert-warning">
       Загрузка...
     </div>
     <user-list v-else :users="users" />
@@ -10,26 +10,35 @@
 </template>
 
 <script>
-import axios from 'axios'
-import UserList from '@/components/UserList.vue'
+// import axios from 'axios'
+import axios from '@/axios.js'
+// import UserList from '@/components/UserList.vue'
+
 export default {
-  name: 'UsersPage',
+  name: 'UsersListPage',
   components: {
-    'user-list': UserList
+    // 'user-list': UsersList
+    'user-list': () => import('@/components/UsersList.vue')
   },
   data: () => ({
     // Список пользователей
     users: []
   }),
+  computed: {
+    lengthUsers() {
+      return this.users.length > 0
+    }
+  },
   mounted() {
     // отжидание ответа с бд
     this.loadData()
   },
   methods: {
     loadData() {
-      axios.get('http://localhost:3000/users').then(({ data }) => {
-        this.users = data.users.catch(error => console.log(error))
-      })
+      axios
+        .get('/users')
+        .then(response => (this.users = response.data))
+        .catch(error => console.error(error))
     }
   }
 }

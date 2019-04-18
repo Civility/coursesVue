@@ -38,15 +38,15 @@
 export default {
   name: 'UsersList',
   props: {
-    // Список пользователей
+    // Список
     users: {
       type: Array,
       required: true
     }
   },
   computed: {
-    // Общее количество пользователей
-    total: function() {
+    // Всего пользователей
+    total() {
       return this.users.length
     }
   }
