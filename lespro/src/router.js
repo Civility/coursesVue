@@ -42,7 +42,7 @@ const router = new Router({
       name: 'add',
       // component: UserEdit
       component: () => import('@/views/UserAdd.vue')
-    }   
+    }
   ]
 })
 

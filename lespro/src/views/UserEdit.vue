@@ -10,12 +10,8 @@
       <user-form v-model="user" />
       {{ user }}
       <hr />
-  <button type="button" class="btn btn-primary m-3" @click="save">Сохранить</button>
-  <button type="button" class="btn btn-outline-danger m-3" @click="del">Удалить</button>
-   
-
-
-
+      <button type="button" class="btn btn-primary m-3" @click="save">Сохранить</button>
+      <button type="button" class="btn btn-outline-danger m-3" @click="del">Удалить</button>
     </template>
   </div>
 </template>
@@ -24,7 +20,6 @@
 // import axios from 'axios'
 import axios from '@/axios.js'
 // import UserForm from '@/components/UserForm.vue'
-
 
 export default {
   name: 'UserEdit',
@@ -70,7 +65,8 @@ export default {
         .delete(this.urlUserId, this.user)
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
-    }
+    },
+    cancel() {}
   }
 }
 </script>

@@ -19,7 +19,7 @@
 
     <div class="form-group">
       <label>Картинка</label>
-      <img :src="localUser.picture" alt="pictureUsers" class="img-fluid"/>
+      <img :src="localUser.picture" alt="pictureUsers" class="img-fluid" />
       <input type="text" class="form-control" v-model="localUser.picture" />
     </div>
 
@@ -36,7 +36,7 @@
     <div class="form-group">
       <label>Телефон</label>
       <input type="text" class="form-control" v-model="localUser.phone" />
-    </div>  
+    </div>
 
     <!-- <div class="form-group">
       <label>Доступ</label>

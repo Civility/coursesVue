@@ -46,7 +46,7 @@ export default {
     user: null,
     id: 0
   }),
-    computed: {
+  computed: {
     // id() {
     //   return this.$route.params.id
     // },
@@ -58,15 +58,15 @@ export default {
     this.loadUser()
   },
   methods: {
-      loadUser() {
-          this.user = Object.assign({}, emptyObj)
-      },
-        save() {
-            axios
-            .patch(this.urlUserId, this.user)
-            .then(() => this.$router.push('/users'))
-            .catch(error => console.error(error))
-        }
+    loadUser() {
+      this.user = Object.assign({}, emptyObj)
+    },
+    save() {
+      axios
+        .patch(this.urlUserId, this.user)
+        .then(() => this.$router.push('/users'))
+        .catch(error => console.error(error))
     }
+  }
 }
 </script>
