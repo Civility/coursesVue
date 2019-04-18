@@ -7,12 +7,15 @@
     </div>
     <template v-else>
       <!-- <user-form :user="user" @update="updateUser" /> -->
-      <user-form v-model="user"/>
+      <user-form v-model="user" />
       {{ user }}
       <hr />
-      <button type="button" class="btn btn-primary" @click="save">
-        Сохранить
-      </button>
+  <button type="button" class="btn btn-primary m-3" @click="save">Сохранить</button>
+  <button type="button" class="btn btn-outline-danger m-3" @click="del">Удалить</button>
+   
+
+
+
     </template>
   </div>
 </template>
@@ -22,6 +25,7 @@
 import axios from '@/axios.js'
 // import UserForm from '@/components/UserForm.vue'
 
+
 export default {
   name: 'UserEdit',
   components: {
@@ -30,7 +34,8 @@ export default {
   },
   data: () => ({
     //локальные данные которые передаются
-    user: null
+    user: null,
+    message: ''
   }),
   computed: {
     id() {
@@ -57,6 +62,12 @@ export default {
     save() {
       axios
         .patch(this.urlUserId, this.user)
+        .then(() => this.$router.push('/users'))
+        .catch(error => console.error(error))
+    },
+    del() {
+      axios
+        .delete(this.urlUserId, this.user)
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
     }

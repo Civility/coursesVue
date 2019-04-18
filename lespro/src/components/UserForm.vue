@@ -11,20 +11,32 @@
     </div>
 
     <div class="form-group">
+      <label>Активность</label>
+      <div class="checkbox-inline">
+        <input type="checkbox" v-model="localUser.isActive" v-text="localUser.isActive" />
+      </div>
+    </div>
+
+    <div class="form-group">
       <label>Картинка</label>
-      <img :src="localUser.picture" alt="img-fluid" />
+      <img :src="localUser.picture" alt="pictureUsers" class="img-fluid"/>
       <input type="text" class="form-control" v-model="localUser.picture" />
     </div>
 
     <div class="form-group">
-      <label>registered</label>
-      <input type="text" class="form-control" v-model="localUser.registered" />
+      <label>Баланс</label>
+      <input type="text" class="form-control" v-model="localUser.balance" />
     </div>
 
     <div class="form-group">
-      <label>Активность</label>
-      <div class="checkbox-inline"><input type="checkbox" v-model="localUser.isActive" v-text="localUser.isActive"/></div>
+      <label>Email</label>
+      <input type="text" class="form-control" v-model="localUser.email" />
     </div>
+
+    <div class="form-group">
+      <label>Телефон</label>
+      <input type="text" class="form-control" v-model="localUser.phone" />
+    </div>  
 
     <!-- <div class="form-group">
       <label>Доступ</label>
@@ -34,11 +46,6 @@
         </option>
       </select>
     </div> -->
-
-    <div class="form-group">
-      <label>Телефон</label>
-      <input type="text" class="form-control" v-model="localUser.phone" />
-    </div>
 
     <div class="form-group">
       <label>Адрес</label>

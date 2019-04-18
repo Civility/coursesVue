@@ -36,7 +36,13 @@ const router = new Router({
       name: 'edit',
       // component: UserEdit
       component: () => import('@/views/UserEdit.vue')
-    }
+    },
+    {
+      path: '/add',
+      name: 'add',
+      // component: UserEdit
+      component: () => import('@/views/UserAdd.vue')
+    }   
   ]
 })
 

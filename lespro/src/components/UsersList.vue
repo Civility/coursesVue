@@ -9,7 +9,7 @@
         <th>Баланс</th>
         <th>Email</th>
         <th>Телефон</th>
-        <th>Зарегистрирован</th>
+        <th>Адрес</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
         <td>{{ item.balance }}</td>
         <td>{{ item.email }}</td>
         <td>{{ item.phone }}</td>
-        <td>{{ item.registered }}</td>
+        <td>{{ item.address }}</td>
       </tr>
     </tbody>
     <tfoot>
