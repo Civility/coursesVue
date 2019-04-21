@@ -10,14 +10,11 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import axios from '@/axios.js'
-// import UserList from '@/components/UserList.vue'
 
 export default {
   name: 'UsersListPage',
   components: {
-    // 'user-list': UsersList
     'user-list': () => import('@/components/UsersList.vue')
   },
   data: () => ({

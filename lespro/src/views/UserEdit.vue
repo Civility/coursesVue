@@ -17,9 +17,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import axios from '@/axios.js'
-// import UserForm from '@/components/UserForm.vue'
 
 export default {
   name: 'UserEdit',
@@ -29,8 +27,7 @@ export default {
   },
   data: () => ({
     //локальные данные которые передаются
-    user: null,
-    message: ''
+    user: null
   }),
   computed: {
     id() {
@@ -44,10 +41,6 @@ export default {
     this.loadUser()
   },
   methods: {
-    // т.к. поменяли на v-model, : user="user" @update='updateUser' - можно удалять
-    // updateUser(newUser) {
-    //   this.user = newUser
-    // },
     loadUser() {
       axios
         .get(this.urlUserId)
@@ -65,8 +58,7 @@ export default {
         .delete(this.urlUserId, this.user)
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
-    },
-    cancel() {}
+    }
   }
 }
 </script>

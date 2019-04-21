@@ -53,6 +53,12 @@
     </div>
 
     <div class="form-group">
+      <label>Даregisteredта</label>
+      <input type="text" class="form-control" v-model="localUser.registered" />
+      <!-- <Datepicker v-model="localUser.registered" /> -->
+    </div>
+
+    <div class="form-group">
       <label>Компания</label>
       <input type="text" class="form-control" v-model="localUser.company" />
     </div>

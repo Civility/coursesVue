@@ -1,11 +1,26 @@
 <template>
   <div>
-       <select class="form-control" v-model="size">
-            <option>
-              <p>{{ size }}</p>
-            </option>
-          </select>
-          <br />
+    <form>
+      <div class="form-row">
+        <div class="col">
+          <label>С шагом</label>
+          <selection-list v-model.number="rowsPerPage" />
+        </div>
+        <div class="col">
+          <label>Любая страница</label>
+          <input
+            class="form-control"
+            type="number"
+            min="1"
+            max="999"
+            maxlength="100"
+            v-model.number="rowsPerPage"
+          />
+        </div>
+      </div>
+    </form>
+
+    <br />
     <table class="table table-hover">
       <thead>
         <tr>
@@ -20,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in paginUsers" :key="item.id">
+        <tr v-for="item in paginatedData" :key="item.id">
           <td>
             <router-link :to="'/edit/' + item.id"> # {{ item.id }} </router-link>
           </td>
@@ -35,68 +50,63 @@
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="8">Всего пользователей: {{ total }}</th>
+          <th colspan="8">{{ title }}: {{ totalUsers }}</th>
         </tr>
       </tfoot>
     </table>
-    <button @click="prevPage" :disabled="pageNumber == 0">
-      Назад
-    </button>
-    <!-- <button type="button" class="btn btn-sm btn-outline-secondary" 
-      v-for="pageNumber in pages.slice(page-1, page+5)" 
-      @click="page = pageNumber"> {{pageNumber}} 
-    </button> -->
-    <button @click="nextPage" :disabled="pageNumber >= pagecount - 1">
-      Вперед
-    </button>
-    на страницу : {{ size }}
-    всего страниц : {{pageCount}}
+    <strong>Выбрана страница {{ selectedPage }}</strong>
+    <paginated-list 
+      v-model.number="selectedPage" 
+      :per-page="rowsPerPage" 
+      :total="totalUsers" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'UsersList',
-  data() {
-    return {
-      pageNumber: 0,
-      size: 5,
-    }
+  components: {
+    'selection-list': () => import('@/components/SelectionList.vue'),
+    'paginated-list': () => import('@/components/PaginatedList.vue')
   },
   props: {
-    // Список
     users: {
       type: Array,
       required: true
+    },
+    title: {
+      type: String,
+      default: 'Всего пользователей'
     }
-    // size: {
-    //   type: Number,
-    //   required: false,
-    //   default: 5
-    // }
+  },
+  data() {
+    return {
+      rowsPerPage: 5,
+      selectedPage: 1
+    }
   },
   computed: {
     // Всего пользователей
-    total() { 
+    totalUsers() {
       return this.users.length
     },
-    pageCount() {
-      let usersAll = this.users.length
-      let sizePage = this.size
-      return Math.ceil(usersAll / sizePage)
-    },
-    paginUsers() {
-      const start = this.pageNumber * this.size
-      const end = start + this.size
-      return this.users.slice(start, end)
+    // Отображаемые строки таблицы
+    paginatedData() {
+      const start = (this.selectedPage - 1) * this.rowsPerPage,
+            end = start + this.rowsPerPage;
+      return this.users.slice(start, end);
+
+      // return this.users.filter((item, index) => {
+      //   const start = (this.selectedPage - 1) * this.rowsPerPage
+      //   const end = start + this.rowsPerPage
+      //   return start <= index && index < end
+      // })
     }
   },
-  methods: {
-    nextPage() {
-      this.pageNumber++
-    },
-    prevPage() {
-      this.pageNumber--
+  watch: {
+    // При изменении количества элементов на страницу
+    rowsPerPage() {
+      this.selectedPage = 1
     }
   }
 }

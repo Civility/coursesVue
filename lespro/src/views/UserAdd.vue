@@ -23,11 +23,10 @@ import axios from '@/axios.js'
 const emptyObj = {
   id: 0,
   isActive: false,
-  balance: '',
-  picture: 'http://placehold.it/36x36',
+  balance: 0,
+  picture: 'http://placehold.it/100x100',
   age: 0,
-  accessLevel: '',
-  firstName: '',
+  name: '',
   lastName: '',
   company: '',
   email: '',
@@ -43,15 +42,14 @@ export default {
   },
   data: () => ({
     //локальные данные которые передаются
-    user: null,
-    id: 0
+    user: null
   }),
   computed: {
-    // id() {
-    //   return this.$route.params.id
-    // },
+    id() {
+      return this.$route.params.id
+    },
     urlUserId() {
-      return '/users/' + this.id
+      return '/users/'
     }
   },
   mounted() {
@@ -63,8 +61,9 @@ export default {
     },
     save() {
       axios
-        .patch(this.urlUserId, this.user)
+        .post(this.urlUserId, this.user)
         .then(() => this.$router.push('/users'))
+        // .then(response => {})
         .catch(error => console.error(error))
     }
   }

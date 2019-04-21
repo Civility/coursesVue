@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <router-link to="/" tag="a" class="navbar-brand" exact>Logo</router-link>
+        <router-link to="/" class="navbar-brand" exact>Logo</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -16,15 +16,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link to="/users" tag="a" active-class="active" class="nav-item nav-link"
-              >Users
-            </router-link>
-            <router-link to="/add" tag="a" active-class="active" class="nav-item nav-link"
-              >Add users
-            </router-link>
-            <router-link to="/about" tag="a" active-class="active" class="nav-item nav-link"
-              >About
-            </router-link>
+            <router-link to="/users" class="nav-item nav-link">Users </router-link>
+            <router-link to="/add" class="nav-item nav-link">Add users </router-link>
+            <router-link to="/about" class="nav-item nav-link">About </router-link>
           </div>
         </div>
       </div>

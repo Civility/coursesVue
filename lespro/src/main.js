@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import App from '@/App.vue'
 import router from '@/router.js'
-import '@/registerServiceWorker'
+import '@/registerServiceWorker.js'
 import 'bootstrap/scss/bootstrap.scss'
 import NProgress from 'vue-nprogress'
 
