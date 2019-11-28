@@ -1,0 +1,13 @@
+@import 'bootstrap/scss/bootstrap.scss';
+
+footer {
+
+  @extend .bg-dark;
+  @extend .text-white;
+
+  .copy {
+    @extend .text-right;
+    @extend .m-auto;
+    @extend .py-3;
+  }
+}

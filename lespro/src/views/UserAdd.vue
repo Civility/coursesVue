@@ -2,23 +2,19 @@
   <div>
     <h2>Новый пользователь {{ id }}</h2>
 
-    <div v-if="!user" class="alert alert-warning">
-      Загрузка...
-    </div>
+    <div v-if="!user" class="alert alert-warning">Загрузка...</div>
     <template v-else>
       <!-- <user-form :user="user" @update="updateUser" /> -->
       <user-form v-model="user" />
-      {{ user }}
-      <hr />
-      <button type="button" class="btn btn-primary" @click="save">
-        Сохранить
-      </button>
+
+      <button type="button" class="my-3 btn btn-primary" @click="save">Сохранить</button>
     </template>
   </div>
 </template>
 
 <script>
 import axios from '@/axios.js'
+
 // import UserForm from '@/components/UserForm.vue'
 const emptyObj = {
   id: 0,
@@ -26,7 +22,7 @@ const emptyObj = {
   balance: 0,
   picture: 'http://placehold.it/100x100',
   age: 0,
-  name: '',
+  firstName: '',
   lastName: '',
   company: '',
   email: '',
@@ -49,7 +45,9 @@ export default {
       return this.$route.params.id
     },
     urlUserId() {
-      return '/users/'
+      // return '/users/'
+      // return '/db.json/'
+      return 'db.json'
     }
   },
   mounted() {
@@ -62,7 +60,8 @@ export default {
     save() {
       axios
         .post(this.urlUserId, this.user)
-        .then(() => this.$router.push('/users'))
+        // .then(() => this.$router.push('/users'))
+        .then(() => this.$router.push('db.json'))
         // .then(response => {})
         .catch(error => console.error(error))
     }

@@ -10,9 +10,7 @@
       </li>
 
       <li class="page-item" v-for="item in maxPages" :key="item" :class="{ active: page === item }">
-        <a href="#" class="page-link" @click.prevent="selectPage(item)">
-          {{ item }}
-        </a>
+        <a href="#" class="page-link" @click.prevent="selectPage(item)">{{ item }}</a>
       </li>
 
       <li class="page-item" :class="{ disabled: page === maxPages }">
@@ -56,14 +54,14 @@ export default {
   methods: {
     // Предыдущая страница
     prevPage() {
-      const pageNum = this.page--
+      const pageNum = --this.page
       if (pageNum != 0) {
         this.selectPage(pageNum)
       }
     },
     // Следующая страница
     nextPage() {
-      const pageNum = this.page++
+      const pageNum = ++this.page
       if (pageNum <= this.maxPages) {
         this.selectPage(pageNum)
       }
@@ -73,6 +71,5 @@ export default {
       this.$emit('input', page)
     }
   }
-  // взято с github
 }
 </script>

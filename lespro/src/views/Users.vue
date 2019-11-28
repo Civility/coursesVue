@@ -1,10 +1,7 @@
 <template>
   <div>
     <h2>Список пользователей</h2>
-
-    <div v-if="!lengthUsers" class="alert alert-warning">
-      Загрузка...
-    </div>
+    <div v-if="!lengthUsers" class="alert alert-warning">Загрузка...</div>
     <user-list v-else :users="users" />
   </div>
 </template>
@@ -13,7 +10,7 @@
 import axios from '@/axios.js'
 
 export default {
-  name: 'UsersListPage',
+  name: 'UsersList',
   components: {
     'user-list': () => import('@/components/UsersList.vue')
   },
@@ -33,8 +30,11 @@ export default {
   methods: {
     loadData() {
       axios
-        .get('/users')
-        .then(response => (this.users = response.data))
+        // .get('/users')
+        // .get('/db.json')
+        .get('db.json')
+        // .then(response => (this.users = response.data))
+        .then(response => (this.users = response.data.users))
         .catch(error => console.error(error))
     }
   }
