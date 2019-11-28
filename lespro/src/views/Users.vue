@@ -30,11 +30,10 @@ export default {
   methods: {
     loadData() {
       axios
-        // .get('/users')
-        // .get('/db.json')
-        .get('db.json')
-        // .then(response => (this.users = response.data))
-        .then(response => (this.users = response.data.users))
+        .get('/users')
+        // .get('db.json')
+        .then(response => (this.users = response.data))
+        // .then(response => (this.users = response.data.users))
         .catch(error => console.error(error))
     }
   }

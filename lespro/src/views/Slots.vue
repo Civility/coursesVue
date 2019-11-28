@@ -60,11 +60,10 @@ export default {
   },
   methods: {
     loadData() {
-      // axios('/users')
-      // axios('/db.json')
-      axios('db.json')
-        // .then(response => (this.users = response.data))
-        .then(response => (this.users = response.data.users))
+      axios('/users')
+      // axios('db.json')
+        .then(response => (this.users = response.data))
+        // .then(response => (this.users = response.data.users))
         .catch(error => console.error(error))
     },
     testParent() {

@@ -3,8 +3,8 @@
     <div v-if="!user" class="alert alert-warning">Загрузка...</div>
     <template v-else>
       <!-- <user-form :user="user" @update="updateUser" /> -->
-      <!-- <user-form v-model="user"> -->
-      <user-form v-model="user[id]">
+      <user-form v-model="user">
+        <!-- <user-form v-model="user[id]"> -->
         <!-- <template #debugging>
           <pre>UserEdit.vue (debugging)---<mark>{{ id }}</mark></pre>
         </template>-->
@@ -44,13 +44,13 @@ export default {
       return this.$route.params.id
     },
     urlUserId() {
-      const db = 'db.json'
-      return db
-      // return '/db.json/' + this.id
-      // return '/users/' + this.id
+      // const db = 'db.json'
+      // return db
+      return '/users/' + this.id
     }
   },
   // watch: {
+  // Обновление данных при изменениях маршрута
   //   $route: 'loadUser'
   // },
   //локальные данные которые загружаются
@@ -60,24 +60,22 @@ export default {
   methods: {
     loadUser() {
       axios(this.urlUserId) // .get is a default value
-        .then(response => (this.user = response.data.users))
-        // .then(response => (this.user = response.data))
+        // .then(response => (this.user = response.data.users))
+        .then(response => (this.user = response.data))
         .catch(error => console.error(error))
 
       // .finally(() => this.user != true)
     },
     cancel() {
-      // axios(this.user, this.user)
-      axios(this.user[this.id])
-        // .then(() => this.$router.push('/db.json'))
+      axios(this.user, this.user)
+        // axios(this.user[this.id])
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
     },
     saveExit() {
       axios
-        // .patch(this.urlUserId, this.user)
-        .post(this.urlUserId, this.user[this.id])
-        // .then(() => this.$router.push('/db.json'))
+        .patch(this.urlUserId, this.user)
+        // .post(this.urlUserId, this.user[this.id])
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
     },
@@ -89,17 +87,16 @@ export default {
       // }
 
       axios
-        // .patch(this.urlUserId, this.user)
-        // .then(() => this.urlUserId, this.user)
-        .post(this.urlUserId, this.user[this.id])
-        .then(() => this.urlUserId, this.user[this.id])
+        .patch(this.urlUserId, this.user)
+        .then(() => this.urlUserId, this.user)
+        // .post(this.urlUserId, this.user[this.id])
+        // .then(() => this.urlUserId, this.user[this.id])
         .catch(error => console.error(error))
     },
     del() {
       axios
-        // .delete(this.urlUserId, this.user)
-        .delete(this.urlUserId, this.user[this.id])
-        // .then(() => this.$router.push('/db.json'))
+        .delete(this.urlUserId, this.user)
+        // .delete(this.urlUserId, this.user[this.id])
         .then(() => this.$router.push('/users'))
         .catch(error => console.error(error))
     }

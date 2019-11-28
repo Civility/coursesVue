@@ -7,8 +7,8 @@
       "picture": "https://i.imgur.com/V4vTtWU.jpg",
       "age": 33,
       "firstName": "User",
-      "lastName": "User",
-      "company": "ERSUM",
+      "lastName": "Users",
+      "company": "IZZBY",
       "email": "undefined@ovolo.info",
       "phone": "+1 (938) 444-2183",
       "address": "User",
@@ -271,21 +271,6 @@
       "registered": "Wednesday, August 22, 2018 1:42 AM"
     },
     {
-      "id": 20,
-      "isActive": false,
-      "balance": 0,
-      "picture": "http://placehold.it/100x100",
-      "age": 0,
-      "firstName": "User",
-      "lastName": "User",
-      "company": "ВАПВАП",
-      "email": "",
-      "phone": "",
-      "address": "User",
-      "about": "",
-      "registered": ""
-    },
-    {
       "id": 21,
       "isActive": true,
       "balance": "11111",
@@ -299,6 +284,21 @@
       "address": "gdfgeswrtsdfg",
       "about": "",
       "registered": "22.11.2019"
+    },
+    {
+      "id": 22,
+      "isActive": true,
+      "balance": "651651561",
+      "picture": "https://i.imgur.com/41iCmFu.jpg",
+      "age": 0,
+      "firstName": "ONE",
+      "lastName": "Second",
+      "company": "ERSUM",
+      "email": "one@one.one",
+      "phone": "123123123",
+      "address": "SPB",
+      "about": "<p>Редактор встроен плагином.</p>",
+      "registered": "01.11.2019"
     }
   ]
 }

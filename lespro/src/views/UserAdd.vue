@@ -45,9 +45,8 @@ export default {
       return this.$route.params.id
     },
     urlUserId() {
-      // return '/users/'
-      // return '/db.json/'
-      return 'db.json'
+      return '/users/'
+      // return 'db.json'
     }
   },
   mounted() {
@@ -60,8 +59,8 @@ export default {
     save() {
       axios
         .post(this.urlUserId, this.user)
-        // .then(() => this.$router.push('/users'))
-        .then(() => this.$router.push('db.json'))
+        .then(() => this.$router.push('/users'))
+        // .then(() => this.$router.push('db.json'))
         // .then(response => {})
         .catch(error => console.error(error))
     }
